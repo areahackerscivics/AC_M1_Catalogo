@@ -3,6 +3,7 @@
 
 import sys, os
 import datetime
+#from datetime import datetime
 import urllib
 from pymongo import MongoClient#Libreria Mongodb
 parent_dir=os.getcwd()
@@ -72,6 +73,7 @@ def calculoCatalogo(filename,anyo,mes):
     result = []
     keys = dicc.keys()
     keys.sort()
+    today=datetime.date.today()
     for categoria in keys:
         result.append( {'categoria': categoria, 'numDatasets': dicc[categoria]} )
         catdb={
@@ -82,14 +84,14 @@ def calculoCatalogo(filename,anyo,mes):
                 }
     try:
         catsdb.insert_one(catdb)#Almacenar tweet
+        print str(today),":Insertado con exito "
     except:
-        print "Este registro ya existe "
-            #continue
-    #return catdb
+        print str(today),":Este registro ya existe "
 
-
-
-def getCatalogoBLL(anyo, mes):
+def getCatalogoBLL():
+    today=datetime.date.today()
+    anyo=today.strftime("%Y")
+    mes=today.strftime("%m")
     """Devuelve el número de datasets por categoría.
 
      Retorna  un array con el nombre de la categoría con el número de
@@ -105,11 +107,6 @@ def getCatalogoBLL(anyo, mes):
     fecha = datetime.datetime.now()
     anyoAct = fecha.strftime ("%Y")
     mesAct =  fecha.strftime ("%m")
-
-    #Si el fichero existe, lo devuelve.
-    # print os.getcwd()
-    # print os.path.isfile(filename)
-    # print os.path.isfile("FILES/"+filename)
 
     if os.path.isfile("FILES/"+filename):
         return calculoCatalogo(filename,anyo,mes )
@@ -162,4 +159,4 @@ def getCatalogoBLL(anyo, mes):
                         "FechaUpdateCatalogo":datafechaAct
                         }
             return catdb
-getCatalogoBLL("2018","01")
+getCatalogoBLL()
