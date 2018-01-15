@@ -112,6 +112,4 @@ def getCatalogoBLL():
         testfile = urllib.URLopener()
         testfile.retrieve("http://gobiernoabierto.valencia.es/wp-content/themes/viavansi-ogov/proxyFile.php?url=http://gobiernoabierto.valencia.es/va/catalogo.rdf", 'FILES/'+filename)
         return calculoCatalogo(filename,anyo,mes)
-
-
 getCatalogoBLL()
