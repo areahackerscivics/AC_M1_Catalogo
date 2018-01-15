@@ -113,6 +113,6 @@ def getCatalogoBLL():
     else:
         #Si el año y el mes actuales son los mismos que los de la petición, nos descargamos el nuevo rdf de la web del ayuntamiento y realizamos el cálculo.
         testfile = urllib.URLopener()
-        testfile.retrieve("http://gobiernoabierto.valencia.es/wp-content/themes/viavansi-ogov/proxyFile.php?url=http://gobiernoabierto.valencia.es/va/catalogo.rdf", 'FILES/'+filename)
+        testfile.retrieve("http://gobiernoabierto.valencia.es/wp-content/themes/viavansi-ogov/proxyFile.php?url=http://gobiernoabierto.valencia.es/va/catalogo.rdf", datafile)
         return calculoCatalogo(filename,anyo,mes)
 getCatalogoBLL()
