@@ -108,7 +108,7 @@ def getCatalogoBLL():
     filename = 'catalogo_' + anyo + '_' + mes + '.rdf'
     datafile=os.path.join("AC_M1_Catalogo","FILES","filename") #ruta crontab linux
 
-    if os.path.isfile("FILES/"+filename):
+    if os.path.isfile(datafile):
         return calculoCatalogo(filename,anyo,mes )
     else:
         #Si el año y el mes actuales son los mismos que los de la petición, nos descargamos el nuevo rdf de la web del ayuntamiento y realizamos el cálculo.
