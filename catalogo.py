@@ -25,7 +25,9 @@ catsdb = db[coleccion]
 
 def calculoCatalogo(filename,anyo,mes):
 
-    DOMTree = xml.dom.minidom.parse('FILES/'+filename)
+    datafile=os.path.join("AC_M1_Catalogo","FILES","filename") #ruta crontab linux
+
+    DOMTree = xml.dom.minidom.parse(datafile)
 
     coleccion = DOMTree.documentElement
 
@@ -84,7 +86,7 @@ def calculoCatalogo(filename,anyo,mes):
                 "FechaUpdateCatalogo":datafechaAct
                 }
     try:
-        catsdb.insert_one(catdb)#Almacenar tweet
+        catsdb.insert_one(catdb)#Almacenar catalogo
         print str(today),":Insertado con exito "
     except:
         print str(today),":Este registro ya existe "
@@ -104,6 +106,7 @@ def getCatalogoBLL():
     """
 
     filename = 'catalogo_' + anyo + '_' + mes + '.rdf'
+    datafile=os.path.join("AC_M1_Catalogo","FILES","filename") #ruta crontab linux
 
     if os.path.isfile("FILES/"+filename):
         return calculoCatalogo(filename,anyo,mes )
